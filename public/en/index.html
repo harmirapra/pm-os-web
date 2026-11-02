@@ -217,15 +217,16 @@ h2{ font:500 clamp(1.75rem,3.2vw,2.5rem)/1.12 var(--sans); font-stretch:94%; let
 .team{ list-style:none; margin:0; padding:0; }
 .team li{ position:relative; display:grid; grid-template-columns:18px 1fr; column-gap:12px; row-gap:2px; padding:16px 0 18px; border-top:1px solid var(--rule); }
 .team li:last-child{ border-bottom:1px solid var(--rule); }
-.team li::before{ content:""; grid-row:1 / span 2; width:9px; height:9px; margin-top:.55em; border:1.5px solid var(--ink); border-radius:50%; transition:background .25s, border-color .25s; }
-.team li:hover::before{ background:var(--accent); border-color:var(--accent); }
+/* odrážka je skutečný prvek, ne ::before: některá rozšíření prohlížečů skrývají `ul li::before` přes !important a rozbila by mřížku */
+.team .dot{ grid-row:1 / span 2; width:9px; height:9px; margin-top:.55em; border:1.5px solid var(--ink); border-radius:50%; transition:background .25s, border-color .25s; }
+.team li:hover .dot{ background:var(--accent); border-color:var(--accent); }
 .team .nm{ font:600 1.0625rem/1.35 var(--sans); letter-spacing:-.01em; }
 .team .ds{ color:var(--ink-2); grid-column:2; }
 .team li::after{ content:""; position:absolute; left:0; top:-1px; width:0; height:1px; background:var(--accent); transition:width .5s cubic-bezier(.2,.7,.2,1); }
 .team li:hover::after{ width:100%; }
 @media (min-width:900px){
   .team li{ grid-template-columns:28px minmax(0,17rem) 1fr; column-gap:20px; align-items:baseline; padding:20px 0; }
-  .team li::before{ grid-row:auto; margin-top:0; align-self:center; }
+  .team .dot{ grid-row:auto; margin-top:0; align-self:center; }
   .team .ds{ grid-column:3; }
 }
 
@@ -409,17 +410,17 @@ footer .legal{ justify-content:flex-end; }
         <h2 id="h-team"><span class="t-cs" lang="cs">Každý specialista odpovídá za jeden řídicí dokument.</span><span class="t-en" lang="en">Each specialist owns one project governance artifact.</span></h2>
       </div>
       <ul class="team">
-        <li><span class="nm">Project Brief Expert</span>
+        <li><span class="dot" aria-hidden="true"></span><span class="nm">Project Brief Expert</span>
           <span class="ds"><span class="t-cs" lang="cs">Ze záměru připraví zahajovací dokument a&nbsp;otevřené otázky k&nbsp;rozhodnutí sponzora.</span><span class="t-en" lang="en">Turns an idea into a brief and open questions the sponsor can decide on.</span></span></li>
-        <li><span class="nm">Initiation Strategist</span>
+        <li><span class="dot" aria-hidden="true"></span><span class="nm">Initiation Strategist</span>
           <span class="ds"><span class="t-cs" lang="cs">Navrhne, jak se bude projekt řídit, členit do etap a&nbsp;sledovat.</span><span class="t-en" lang="en">Sets out how the project will be run, staged and controlled.</span></span></li>
-        <li><span class="nm">WBS Expert</span>
+        <li><span class="dot" aria-hidden="true"></span><span class="nm">WBS Expert</span>
           <span class="ds"><span class="t-cs" lang="cs">Sestaví registr výstupů: co má vzniknout, ne seznam úkolů.</span><span class="t-en" lang="en">Builds the deliverables register: what gets produced, not the tasks.</span></span></li>
-        <li><span class="nm">Deliverable Definition Expert</span>
+        <li><span class="dot" aria-hidden="true"></span><span class="nm">Deliverable Definition Expert</span>
           <span class="ds"><span class="t-cs" lang="cs">Popíše projektový výstup tak jasně, aby ho šlo vytvořit, předat a&nbsp;akceptovat.</span><span class="t-en" lang="en">Defines one deliverable clearly enough to build, hand over and accept.</span></span></li>
-        <li><span class="nm">Risk Manager</span>
+        <li><span class="dot" aria-hidden="true"></span><span class="nm">Risk Manager</span>
           <span class="ds"><span class="t-cs" lang="cs">Sepíše registr rizik, tedy hrozeb i&nbsp;příležitostí, z&nbsp;podkladů, které máte po ruce.</span><span class="t-en" lang="en">Writes the risk register, threats and opportunities, from whatever inputs you have.</span></span></li>
-        <li><span class="nm">Project / Stage Planner</span>
+        <li><span class="dot" aria-hidden="true"></span><span class="nm">Project / Stage Planner</span>
           <span class="ds"><span class="t-cs" lang="cs">Navrhne konceptuální plán: definuje posloupnost výstupů a&nbsp;relativní harmonogram.</span><span class="t-en" lang="en">Draws up a conceptual plan: the order deliverables are created in, and a relative timeline.</span></span></li>
       </ul>
       <figure class="plate plate-team">
