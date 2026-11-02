@@ -1,0 +1,26 @@
+name: Kontrola
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  kontrola:
+    name: kontrola
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stáhnout kód
+        uses: actions/checkout@v7
+
+      - name: Zkontrolovat obsah webu
+        run: bash scripts/kontrola.sh
+
+      - name: Připravit Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Zkontrolovat odkazy
+        # Jen vnitřní odkazy; vnější (LinkedIn, claude.ai, chatgpt.com) blokují roboty.
+        run: npx --yes linkinator@8.0.3 ./public --recurse --skip "^https?://(?!localhost|127\.0\.0\.1)"
