@@ -546,7 +546,7 @@ footer .legal{ justify-content:flex-end; }
     function fallback(){ var ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(ta); done(); }
   }
   menu.querySelector('[data-ai="copy"]').addEventListener("click",function(){
-    var pre=lang()==="en"?("The text below is the content of the page "+url()+". Read it and be ready to answer questions about pm-os, based on this page.\n\n---\n\n"):("Níže je obsah stránky "+url()+". Přečti si ho a buď připraven odpovídat na otázky o pm-os podle této stránky.\n\n---\n\n");
+    var pre=lang()==="en"?("The text below is the content of the page "+url()+". Read it, provide short overview and be ready to answer questions about pm-os, based on this page.\n\n---\n\n"):("Níže je obsah stránky "+url()+". Přečti si ho, stručně ho shrň a buď připraven odpovídat na otázky o pm-os podle této stránky.\n\n---\n\n");
     copy(pre+markdown(),function(){
       var old=lab.innerHTML; lab.textContent=lang()==="en"?"Copied. Paste it into your AI chat.":"Zkopírováno. Vložte do chatu s AI.";
       setTimeout(function(){ lab.innerHTML=old; open(false); },2200);
